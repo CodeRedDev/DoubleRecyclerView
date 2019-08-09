@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import de.codereddev.doublerecycler.R
 import de.codereddev.doublerecycler.model.Training
 
-class TrainingAdapter() : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
+class TrainingAdapter : RecyclerView.Adapter<TrainingAdapter.ViewHolder>() {
 
     interface TrainingClickListener {
         fun onClick(uuid: String, editText: EditText, adapter: TrainingSetAdapter)

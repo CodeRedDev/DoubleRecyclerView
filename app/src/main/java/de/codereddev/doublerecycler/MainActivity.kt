@@ -17,7 +17,7 @@ import java.util.*
 class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener {
 
     private var recyclerView: RecyclerView? = null
-    private val parentAdapter = TrainingAdapter(this)
+    private val parentAdapter = TrainingAdapter()
 
     override fun onClick(uuid: String, editText: EditText, adapter: TrainingSetAdapter) {
         if (editText.text.isEmpty())
@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        parentAdapter.setOnClickListener(this)
 
         recyclerView = findViewById<RecyclerView>(R.id.outterRv).apply {
             layoutManager = LinearLayoutManager(this@MainActivity)

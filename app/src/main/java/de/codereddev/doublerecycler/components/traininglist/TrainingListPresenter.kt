@@ -14,7 +14,7 @@ class TrainingListPresenter {
         this.view = WeakReference(view)
     }
 
-    fun addTrainingSet() {
+    fun addTrainingSet(trainingUuid: String, text: String) {
 
     }
 }
