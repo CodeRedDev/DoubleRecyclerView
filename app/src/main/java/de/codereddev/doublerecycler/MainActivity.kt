@@ -10,6 +10,7 @@ import de.codereddev.doublerecycler.adapter.TrainingSetAdapter
 import de.codereddev.doublerecycler.adapter.TrainingAdapter
 import de.codereddev.doublerecycler.model.TrainingSet
 import de.codereddev.doublerecycler.model.Training
+import de.codereddev.doublerecycler.realm.DoubleRecyclerRealm
 import io.realm.Realm
 import java.util.*
 
@@ -49,7 +50,7 @@ class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener 
     }
 
     fun addSetToTraining(uuid: String, text: String): TrainingSet {
-        Realm.getDefaultInstance().use {
+        DoubleRecyclerRealm.newRealmInstance().use {
             val set = TrainingSet().apply {
                 this.text = text
             }
@@ -64,7 +65,7 @@ class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener 
     }
 
     fun addTraining() {
-        Realm.getDefaultInstance().use {
+        DoubleRecyclerRealm.newRealmInstance().use {
             it.executeTransaction { realm ->
                 realm.createObject(Training::class.java, UUID.randomUUID().toString())
             }
@@ -72,7 +73,7 @@ class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener 
     }
 
     fun addDbData() {
-        Realm.getDefaultInstance().use {
+        DoubleRecyclerRealm.newRealmInstance().use {
             it.executeTransaction {
                 val training = it.createObject(Training::class.java, UUID.randomUUID().toString())
                 val setList = mutableListOf<TrainingSet>()
@@ -88,7 +89,7 @@ class MainActivity : AppCompatActivity(), TrainingAdapter.TrainingClickListener 
     }
 
     fun reloadData() {
-        Realm.getDefaultInstance().use {
+        DoubleRecyclerRealm.newRealmInstance().use {
             val result = it.where(Training::class.java).findAll()
             parentAdapter.swapData(it.copyFromRealm(result))
         }

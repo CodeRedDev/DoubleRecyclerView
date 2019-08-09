@@ -1,6 +1,7 @@
 package de.codereddev.doublerecycler
 
 import android.app.Application
+import de.codereddev.doublerecycler.realm.DoubleRecyclerRealm
 import io.realm.Realm
 
 class CustomApplication : Application() {
@@ -9,5 +10,6 @@ class CustomApplication : Application() {
         super.onCreate()
 
         Realm.init(this)
+        DoubleRecyclerRealm.initRealmConfig()
     }
 }
